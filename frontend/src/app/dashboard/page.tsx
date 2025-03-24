@@ -30,7 +30,6 @@ export default function DashboardPage() {
   const [editingNote, setEditingNote] = useState<Note | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // ✅ Explicitly use `error` to prevent linting warning
   if (error) {
     console.error("Error fetching notes:", error);
     return (
@@ -127,7 +126,7 @@ export default function DashboardPage() {
               setEditingNote(note);
               if (!note) setIsModalOpen(false);
             }}
-            fetchNotes={mutate}
+            fetchNotes={() => mutate()} // ✅ Fixed fetchNotes type issue
           />
         </DialogContent>
       </Dialog>
